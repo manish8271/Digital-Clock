@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="clock">
+                <div class="date">
+                    <span id="day"></span> 
+                    <span id="full-date"></span>
+                </div>
+                    <ul>
+                        <li id="hrs">00</li>
+                        <li>:</li>
+                        <li id="min">00</li>
+                        <li>:</li>
+                        <li id="sec">00</li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        let hrs = document.getElementById('hrs');
+        let min = document.getElementById('min');
+        let sec = document.getElementById('sec');
+        let day = document.getElementById('day');
+        let fullDate = document.getElementById('full-date');
+
+        function updateTime() {
+            let currTime = new Date();
+
+            hrs.innerHTML = (currTime.getHours() < 10 ? "0" : "") + currTime.getHours();
+            min.innerHTML = (currTime.getMinutes() < 10 ? "0" : "") + currTime.getMinutes();
+            sec.innerHTML = (currTime.getSeconds() < 10 ? "0" : "") + currTime.getSeconds();
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            day.innerHTML = days[currTime.getDay()];
+
+            const currDate = currTime.getDate();
+            const month = months[currTime.getMonth()];
+            const year = currTime.getFullYear();
+
+            fullDate.innerHTML = (currDate < 10 ? "0" : "") + currDate + " " + month + " " + year;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+    </script>
+</body>
+</html>
